@@ -67,3 +67,13 @@ RETURN n1, r, n2
 // MATCH (n1:`ns0__crypto.owlNodeVerificationTech`)-[r]->(n2)
 // return n1, r, n2
 
+MATCH (n)
+WITH n ORDER BY n.`ns0__crypto.owlhasMarketValue` DESC LIMIT 5
+WHERE exists(n.`ns0__crypto.owlhasoffering`)
+RETURN n
+ORDER BY n.`ns0__crypto.owlhasIssued` DESC
+LIMIT 1
+
+MATCH (n1)-[r]->(n2)
+WHERE exists(n2.`ns0__crypto.owlhasoffering`) AND n2.`uri` CONTAINS 'LiteCoin'
+RETURN r
