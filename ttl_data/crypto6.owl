@@ -1,0 +1,637 @@
+@prefix : <http://cryptocurrency.com/ontologies/crypto.owl> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://cryptocurrency.com/ontologies/crypto.owl> .
+
+<http://cryptocurrency.com/ontologies/crypto.owl> rdf:type owl:Ontology ;
+                                                   rdfs:comment "The Cryptocurrency ontology that describe various Cryptocurrencys based on users contribution" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasAddtional-IssueingTech
+:hasAddtional-IssueingTech rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf :hasDecentralized-RulingTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasDecentralized-FinancingTech
+:hasDecentralized-FinancingTech rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf owl:topObjectProperty ;
+                                owl:inverseOf :isDecentralized-FinancingTechof ;
+                                rdf:type owl:TransitiveProperty ;
+                                rdfs:domain :Information ;
+                                rdfs:range :BlockchainTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasDecentralized-RulingTech
+:hasDecentralized-RulingTech rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf owl:topObjectProperty ;
+                             owl:inverseOf :isDecentralized-RulingTechof ;
+                             rdf:type owl:TransitiveProperty ;
+                             rdfs:domain :Information ;
+                             rdfs:range :BlockchainTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasDecentralized-Tech
+:hasDecentralized-Tech rdf:type owl:ObjectProperty ;
+                       owl:inverseOf :isDecentralized-Techof ;
+                       rdfs:domain :Information ;
+                       rdfs:range :BlockchainTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasDistributedLedgerTech
+:hasDistributedLedgerTech rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf :hasDecentralized-FinancingTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasFirst-IssueingTech
+:hasFirst-IssueingTech rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :hasDecentralized-RulingTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasInformationAbout
+:hasInformationAbout rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :isNeededInfomationFor ;
+                     rdfs:range :Information .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasNodeVerificationTech
+:hasNodeVerificationTech rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :hasDecentralized-FinancingTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasSmartContractTech
+:hasSmartContractTech rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :hasDecentralized-FinancingTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#isDecentralized-FinancingTechof
+:isDecentralized-FinancingTechof rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf owl:topObjectProperty ;
+                                 rdf:type owl:TransitiveProperty .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#isDecentralized-RulingTechof
+:isDecentralized-RulingTechof rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf owl:topObjectProperty ;
+                              rdf:type owl:TransitiveProperty .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#isDecentralized-Techof
+:isDecentralized-Techof rdf:type owl:ObjectProperty .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#isNeededInfomationFor
+:isNeededInfomationFor rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Information .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasIssued
+:hasIssued rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasMarketValue
+:hasMarketValue rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#hasoffering
+:hasoffering rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Addtional-IssueingTech
+:Addtional-IssueingTech rdf:type owl:Class ;
+                        rdfs:subClassOf :Decentralized-RulingTech ;
+                        rdfs:comment "Programmer decided to issueing additional-coin" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#BlockchainTech
+:BlockchainTech rdf:type owl:Class ;
+                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty :isDecentralized-Techof ;
+                                  owl:someValuesFrom :Cryptocurrency
+                                ] .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#ComputerBased
+:ComputerBased rdf:type owl:Class ;
+               rdfs:subClassOf :Information ;
+               owl:disjointWith :UserBased .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#ContentsBased
+:ContentsBased rdf:type owl:Class ;
+               rdfs:subClassOf :UserRealActBased .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Cryptocurrency
+:Cryptocurrency rdf:type owl:Class ;
+                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasDecentralized-FinancingTech ;
+                                  owl:someValuesFrom :Decentralized-FinancingTech
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasDecentralized-RulingTech ;
+                                  owl:someValuesFrom :Decentralized-RulingTech
+                                ] .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#De-FiBased
+:De-FiBased rdf:type owl:Class ;
+            rdfs:subClassOf :ComputerBased ;
+            rdfs:comment "A Crytocurrency that only be rewarded by deFi-based computer-based contribution." .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Decentralized-FinancingTech
+:Decentralized-FinancingTech rdf:type owl:Class ;
+                             rdfs:subClassOf :DecentralizedTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Decentralized-RulingTech
+:Decentralized-RulingTech rdf:type owl:Class ;
+                          rdfs:subClassOf :DecentralizedTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#DecentralizedTech
+:DecentralizedTech rdf:type owl:Class ;
+                   rdfs:subClassOf :BlockchainTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#DistributedLedgerTech
+:DistributedLedgerTech rdf:type owl:Class ;
+                       rdfs:subClassOf :Decentralized-FinancingTech ;
+                       rdfs:comment "Ledger/Block distributed to every sigle user who participate in this block-chain ecosystem." .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#First-IssueingTech
+:First-IssueingTech rdf:type owl:Class ;
+                    rdfs:subClassOf :Decentralized-RulingTech ;
+                    rdfs:comment "Programmer decided to issueing new-coin" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Information
+:Information rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasDecentralized-FinancingTech ;
+                               owl:someValuesFrom :Decentralized-FinancingTech
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasDecentralized-RulingTech ;
+                               owl:someValuesFrom :Decentralized-RulingTech
+                             ] .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#InvestmentBased
+:InvestmentBased rdf:type owl:Class ;
+                 rdfs:subClassOf :De-FiBased ;
+                 rdfs:comment "A Crytocurrency that only be rewarded by defi-based investment-based contribution." .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#LoanBased
+:LoanBased rdf:type owl:Class ;
+           rdfs:subClassOf :De-FiBased ;
+           rdfs:comment "A Crytocurrency that only be rewarded by defi-based loan-based contribution." .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#MiningBased
+:MiningBased rdf:type owl:Class ;
+             rdfs:subClassOf :ComputerBased ;
+             rdfs:comment "A Crytocurrency that only be rewarded by mining-based computer-based contribution." .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#NodeVerificationTech
+:NodeVerificationTech rdf:type owl:Class ;
+                      rdfs:subClassOf :Decentralized-FinancingTech ;
+                      rdfs:comment "Node/Block verified by all of user, so do not need central-financial company for verifying it." .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#PrivateOffering
+:PrivateOffering rdf:type owl:Class ;
+                 rdfs:subClassOf :Cryptocurrency ;
+                 owl:disjointWith :PublicOffering ;
+                 rdfs:comment "A Cryptocurrency which only be offered to private investor." .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#PublicOffering
+:PublicOffering rdf:type owl:Class ;
+                rdfs:subClassOf :Cryptocurrency ;
+                rdfs:comment "A Cryptocurrency which be offered to public investor." .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#SmartContractTech
+:SmartContractTech rdf:type owl:Class ;
+                   rdfs:subClassOf :Decentralized-FinancingTech ;
+                   rdfs:comment "Node could not be revised by haker, so both contractors can make contract based on real & fact." .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#StorageBased
+:StorageBased rdf:type owl:Class ;
+              rdfs:subClassOf :UserAssetBased .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#TechniqueBased
+:TechniqueBased rdf:type owl:Class ;
+                rdfs:subClassOf :UserAssetBased .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#UploadBased
+:UploadBased rdf:type owl:Class ;
+             rdfs:subClassOf :UserRealActBased .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#UserAssetBased
+:UserAssetBased rdf:type owl:Class ;
+                rdfs:subClassOf :UserBased ;
+                owl:disjointWith :UserRealActBased ;
+                rdfs:comment "A Crytocurrency that only be rewarded by userasset-based user-based contribution." .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#UserBased
+:UserBased rdf:type owl:Class ;
+           rdfs:subClassOf :Information .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#UserRealActBased
+:UserRealActBased rdf:type owl:Class ;
+                  rdfs:subClassOf :UserBased ;
+                  rdfs:comment "A Crytocurrency that only be rewarded by user real act-based user-based contribution." .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Additional-Issueing
+:Additional-Issueing rdf:type owl:NamedIndividual ,
+                              :Addtional-IssueingTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Anker
+:Anker rdf:type owl:NamedIndividual ,
+                :PublicOffering ;
+       :hasInformationAbout :Storages ;
+       :hasIssued 7000000000 ;
+       :hasMarketValue 800000000000 ;
+       :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#BItcoinCash
+:BItcoinCash rdf:type owl:NamedIndividual ,
+                      :PublicOffering ;
+             :hasInformationAbout :Block ;
+             :hasIssued 21000000 ;
+             :hasMarketValue 10411804244000 ;
+             :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Balancer
+:Balancer rdf:type owl:NamedIndividual ,
+                   :PublicOffering ;
+          :hasInformationAbout :CLOs ;
+          :hasIssued 100000000 ;
+          :hasMarketValue 238472252000 ;
+          :hasoffering "unlimited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#BitCoin
+:BitCoin rdf:type owl:NamedIndividual ,
+                  :PublicOffering ;
+         :hasInformationAbout :Block ;
+         :hasIssued 21000000 ;
+         :hasMarketValue 660857837815000 ;
+         :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Block
+:Block rdf:type owl:NamedIndividual ,
+                :MiningBased ;
+       :hasDecentralized-FinancingTech :DistributedLedger ,
+                                       :NodeVerification ,
+                                       :SmartContract ;
+       :hasDecentralized-RulingTech :Additional-Issueing ,
+                                    :First-Issueing ;
+       :isNeededInfomationFor :BItcoinCash ,
+                              :BitCoin ,
+                              :Ethereum ,
+                              :EthereumClassic .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#CLOs
+:CLOs rdf:type owl:NamedIndividual ,
+               :InvestmentBased ;
+      :hasDecentralized-FinancingTech :DistributedLedger ,
+                                      :NodeVerification ,
+                                      :SmartContract ;
+      :hasDecentralized-RulingTech :Additional-Issueing ,
+                                   :First-Issueing ;
+      :isNeededInfomationFor :Balancer ,
+                             :Curve ,
+                             :LinkCoin ,
+                             :LiteCoin ,
+                             :Uniswap .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Civic
+:Civic rdf:type owl:NamedIndividual ,
+                :PublicOffering ;
+       :hasInformationAbout :Techniques ;
+       :hasIssued 1000000000 ;
+       :hasMarketValue 166283866000 ;
+       :hasoffering "unlimited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Contents
+:Contents rdf:type owl:NamedIndividual ,
+                   :ContentsBased ;
+          :hasDecentralized-FinancingTech :DistributedLedger ,
+                                          :NodeVerification ,
+                                          :SmartContract ;
+          :hasDecentralized-RulingTech :Additional-Issueing ,
+                                       :First-Issueing ;
+          :isNeededInfomationFor :Everypedia ,
+                                 :Movieblock ,
+                                 :Theta ,
+                                 :Thetafuel ,
+                                 :Tron .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Curve
+:Curve rdf:type owl:NamedIndividual ,
+                :PublicOffering ;
+       :hasInformationAbout :CLOs ;
+       :hasIssued 3303030299 ;
+       :hasMarketValue 690412111000 ;
+       :hasoffering "unlimited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#DaiCoin
+:DaiCoin rdf:type owl:NamedIndividual ,
+                  :PublicOffering ;
+         :hasInformationAbout :Staking ;
+         :hasIssued 4942251119 ;
+         :hasMarketValue 4950037085000 ;
+         :hasoffering "unlimited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#DistributedLedger
+:DistributedLedger rdf:type owl:NamedIndividual ,
+                            :DistributedLedgerTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Ethereum
+:Ethereum rdf:type owl:NamedIndividual ,
+                   :PublicOffering ;
+          :hasInformationAbout :Block ;
+          :hasIssued 116258391 ;
+          :hasMarketValue 2687566242240000 ;
+          :hasoffering "unlimited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#EthereumClassic
+:EthereumClassic rdf:type owl:NamedIndividual ,
+                          :PublicOffering ;
+                 :hasInformationAbout :Block ;
+                 :hasIssued 127841916 ;
+                 :hasMarketValue 6903457751000 ;
+                 :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Everypedia
+:Everypedia rdf:type owl:NamedIndividual ,
+                     :PublicOffering ;
+            :hasInformationAbout :Contents ;
+            :hasIssued 100000000000 ;
+            :hasMarketValue 128925190000 ;
+            :hasoffering "unlimited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#First-Issueing
+:First-Issueing rdf:type owl:NamedIndividual ,
+                         :First-IssueingTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Golem
+:Golem rdf:type owl:NamedIndividual ,
+                :PublicOffering ;
+       :hasInformationAbout :Storages ;
+       :hasIssued 1000000000 ;
+       :hasMarketValue 256289692000 ;
+       :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#LinkCoin
+:LinkCoin rdf:type owl:NamedIndividual ,
+                   :PublicOffering ;
+          :hasInformationAbout :CLOs ;
+          :hasIssued 1000000000 ;
+          :hasMarketValue 596478194000 ;
+          :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#LiteCoin
+:LiteCoin rdf:type owl:NamedIndividual ,
+                   :PublicOffering ;
+          :hasInformationAbout :CLOs ;
+          :hasIssued 66752414 ;
+          :hasMarketValue 10443834772000 ;
+          :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Meta
+:Meta rdf:type owl:NamedIndividual ,
+               :PublicOffering ;
+      :hasInformationAbout :Techniques ;
+      :hasIssued 1637752385 ;
+      :hasMarketValue 127730379000 ;
+      :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Movieblock
+:Movieblock rdf:type owl:NamedIndividual ,
+                     :PublicOffering ;
+            :hasInformationAbout :Contents ;
+            :hasIssued 3528314334 ;
+            :hasMarketValue 23831963000 ;
+            :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#NodeVerification
+:NodeVerification rdf:type owl:NamedIndividual ,
+                           :NodeVerificationTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Observer
+:Observer rdf:type owl:NamedIndividual ,
+                   :PublicOffering ;
+          :hasInformationAbout :Uploads ;
+          :hasIssued 11271266185 ;
+          :hasoffering "unlimited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Ontology
+:Ontology rdf:type owl:NamedIndividual ,
+                   :PublicOffering ;
+          :hasInformationAbout :Techniques ;
+          :hasIssued 863432987 ;
+          :hasMarketValue 754221743000 ;
+          :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Sia
+:Sia rdf:type owl:NamedIndividual ,
+              :PublicOffering ;
+     :hasInformationAbout :Storages ;
+     :hasIssued 48050175000 ;
+     :hasMarketValue 692778931000 ;
+     :hasoffering "unlimited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#SmartContract
+:SmartContract rdf:type owl:NamedIndividual ,
+                        :SmartContractTech .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Staking
+:Staking rdf:type owl:NamedIndividual ,
+                  :LoanBased ;
+         :hasDecentralized-FinancingTech :DistributedLedger ,
+                                         :NodeVerification ,
+                                         :SmartContract ;
+         :hasDecentralized-RulingTech :Additional-Issueing ,
+                                      :First-Issueing ;
+         :isNeededInfomationFor :DaiCoin ,
+                                :USDCCoin ,
+                                :USDTCoin .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Steam
+:Steam rdf:type owl:NamedIndividual ,
+                :PublicOffering ;
+       :hasInformationAbout :Uploads ;
+       :hasIssued 384589795 ;
+       :hasMarketValue 150899642000 ;
+       :hasoffering "unlimited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Steamdollor
+:Steamdollor rdf:type owl:NamedIndividual ,
+                      :PublicOffering ;
+             :hasInformationAbout :Uploads ;
+             :hasIssued 42765465000 ;
+             :hasoffering 7926682 .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#StorageCoin
+:StorageCoin rdf:type owl:NamedIndividual ,
+                      :PublicOffering ;
+             :hasInformationAbout :Storages ;
+             :hasIssued 143787438 ;
+             :hasMarketValue 133114032000 ;
+             :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Storages
+:Storages rdf:type owl:NamedIndividual ,
+                   :StorageBased ;
+          :hasDecentralized-FinancingTech :DistributedLedger ,
+                                          :NodeVerification ,
+                                          :SmartContract ;
+          :hasDecentralized-RulingTech :Additional-Issueing ,
+                                       :First-Issueing ;
+          :isNeededInfomationFor :Anker ,
+                                 :Golem ,
+                                 :Sia ,
+                                 :StorageCoin .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Techniques
+:Techniques rdf:type owl:NamedIndividual ,
+                     :TechniqueBased ;
+            :hasDecentralized-FinancingTech :DistributedLedger ,
+                                            :NodeVerification ,
+                                            :SmartContract ;
+            :hasDecentralized-RulingTech :Additional-Issueing ,
+                                         :First-Issueing ;
+            :isNeededInfomationFor :Civic ,
+                                   :Meta ,
+                                   :Ontology .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Theta
+:Theta rdf:type owl:NamedIndividual ,
+                :PublicOffering ;
+       :hasInformationAbout :Contents ;
+       :hasIssued 1000000000 ;
+       :hasMarketValue 7687405395000 ;
+       :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Thetafuel
+:Thetafuel rdf:type owl:NamedIndividual ,
+                    :PublicOffering ;
+           :hasInformationAbout :Contents ;
+           :hasoffering "unlimited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Tron
+:Tron rdf:type owl:NamedIndividual ,
+               :PublicOffering ;
+      :hasInformationAbout :Contents ;
+      :hasIssued 71660220128 ;
+      :hasMarketValue 4802814962000 ;
+      :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#USDCCoin
+:USDCCoin rdf:type owl:NamedIndividual ,
+                   :PublicOffering ;
+          :hasInformationAbout :Staking ;
+          :hasIssued 23504863093 ;
+          :hasMarketValue 23515018691000 ;
+          :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#USDTCoin
+:USDTCoin rdf:type owl:NamedIndividual ,
+                   :PublicOffering ;
+          :hasInformationAbout :Staking ;
+          :hasIssued 62773702463 ;
+          :hasMarketValue 62871008839000 ;
+          :hasoffering "limited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Uniswap
+:Uniswap rdf:type owl:NamedIndividual ,
+                  :PublicOffering ;
+         :hasInformationAbout :CLOs ;
+         :hasoffering "unlimited" .
+
+
+###  http://cryptocurrency.com/ontologies/crypto.owl#Uploads
+:Uploads rdf:type owl:NamedIndividual ,
+                  :UploadBased ;
+         :hasDecentralized-FinancingTech :DistributedLedger ,
+                                         :NodeVerification ,
+                                         :SmartContract ;
+         :hasDecentralized-RulingTech :Additional-Issueing ,
+                                      :First-Issueing ;
+         :isNeededInfomationFor :Observer ,
+                                :Steam ,
+                                :Steamdollor .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
