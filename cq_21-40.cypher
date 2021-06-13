@@ -66,3 +66,4 @@ RETURN n1, r, n2
 
 // MATCH (n1:`ns0__crypto.owlNodeVerificationTech`)-[r]->(n2)
 // return n1, r, n2
+
