@@ -18,7 +18,8 @@
 // DistributedLedger이 이용된 코인은 무엇입니까?
 // Movieblock은 어떻게 얻을 수 있습니까?
 // NodeVerification이 이용된 코인은 무엇입니까?
-
+// 시가총액 상위 5개중 발행량이 제일 적은 코인은 무엇입니까?
+// Litecoin을 얻으려면 무엇을 제공해야합니까?
 
 MATCH (n)
 WHERE n.`uri` CONTAINS 'Anker'
